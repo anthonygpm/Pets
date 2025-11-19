@@ -15,7 +15,13 @@ public class PetController {
     private final PetService petService;
 
     @GetMapping
-    public List<Pet> listAllPets() {
+    public List<Pet> listAllPets(
+            @RequestParam(required = false) String species,
+            @RequestParam(required = false) String race
+    ) {
+        if ((species != null && !species.isBlank()) || (race != null && !race.isBlank())) {
+            return petService.searchPets(species, race);
+        }
         return petService.listAllPets();
     }
 

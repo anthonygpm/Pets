@@ -23,6 +23,8 @@ public class Pet {
 
     private String species;
 
+    private String race;
+
     private LocalDate birthDate;
 
     private String description;
