@@ -27,15 +27,15 @@ public class PetService {
     }
 
     public Pet updatePet(Long id, Pet updatedPet) {
-        Pet pet = getPetById(id);
+        Pet existingPet = getPetById(id);
 
-        pet.setName(updatedPet.getName());
-        pet.setSpecies(updatedPet.getSpecies());
-        pet.setBirthDate(updatedPet.getBirthDate());
-        pet.setDescription(updatedPet.getDescription());
-        pet.setAdoptionStatus(updatedPet.getAdoptionStatus());
+        existingPet.setName(updatedPet.getName());
+        existingPet.setSpecies(updatedPet.getSpecies());
+        existingPet.setBirthDate(updatedPet.getBirthDate());
+        existingPet.setDescription(updatedPet.getDescription());
+        existingPet.setAdoptionStatus(updatedPet.getAdoptionStatus());
 
-        return petRepository.save(pet);
+        return petRepository.save(existingPet);
     }
 
     public void deletePet(Long id) {
