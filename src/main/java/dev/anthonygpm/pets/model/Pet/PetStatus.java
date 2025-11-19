@@ -1,15 +1,15 @@
-package dev.anthonygpm.pets.model;
+package dev.anthonygpm.pets.model.Pet;
 
 import lombok.Getter;
 
 @Getter
-public enum AdoptionStatus {
+public enum PetStatus {
     AVAILABLE("available"),
     ADOPTED("adopted");
 
     private final String role;
 
-    AdoptionStatus(String role) {
+    PetStatus(String role) {
         this.role = role;
     }
 }

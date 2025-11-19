@@ -1,6 +1,6 @@
 package dev.anthonygpm.pets.controller;
 
-import dev.anthonygpm.pets.model.Pet;
+import dev.anthonygpm.pets.model.Pet.Pet;
 import dev.anthonygpm.pets.service.PetService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;

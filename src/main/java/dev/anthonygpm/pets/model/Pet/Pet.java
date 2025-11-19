@@ -1,4 +1,4 @@
-package dev.anthonygpm.pets.model;
+package dev.anthonygpm.pets.model.Pet;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -30,5 +30,5 @@ public class Pet {
     private String description;
 
     @Enumerated(EnumType.STRING)
-    private AdoptionStatus adoptionStatus;
+    private PetStatus petStatus;
 }

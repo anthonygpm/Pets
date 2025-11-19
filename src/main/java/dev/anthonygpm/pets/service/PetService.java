@@ -1,6 +1,6 @@
 package dev.anthonygpm.pets.service;
 
-import dev.anthonygpm.pets.model.Pet;
+import dev.anthonygpm.pets.model.Pet.Pet;
 import dev.anthonygpm.pets.repository.PetRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -50,7 +50,7 @@ public class PetService {
         existingPet.setRace(updatedPet.getRace());
         existingPet.setBirthDate(updatedPet.getBirthDate());
         existingPet.setDescription(updatedPet.getDescription());
-        existingPet.setAdoptionStatus(updatedPet.getAdoptionStatus());
+        existingPet.setPetStatus(updatedPet.getPetStatus());
 
         return petRepository.save(existingPet);
     }

@@ -1,6 +1,6 @@
 package dev.anthonygpm.pets.repository;
 
-import dev.anthonygpm.pets.model.Pet;
+import dev.anthonygpm.pets.model.Pet.Pet;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
