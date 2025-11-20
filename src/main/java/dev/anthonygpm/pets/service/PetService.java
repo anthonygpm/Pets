@@ -4,7 +4,9 @@ import dev.anthonygpm.pets.model.Pet.Pet;
 import dev.anthonygpm.pets.repository.PetRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -12,6 +14,7 @@ import java.util.List;
 public class PetService {
 
     private final PetRepository petRepository;
+    private final CloudinaryService cloudinaryService;
 
     public List<Pet> listAllPets() {
         return petRepository.findAll();
@@ -55,7 +58,40 @@ public class PetService {
         return petRepository.save(existingPet);
     }
 
+    public Pet uploadPetImage(Long petId, MultipartFile file) throws IOException {
+        Pet pet = getPetById(petId);
+
+        if (pet.getImageUrl() != null && !pet.getImageUrl().isEmpty()) {
+            String publicId = cloudinaryService.extractPublicId(pet.getImageUrl());
+            if (publicId != null) {
+                try {
+                    cloudinaryService.deleteImage(publicId);
+                } catch (Exception e) {
+                    System.err.println("Last image couldn't be deleted: " + e.getMessage());
+                }
+            }
+        }
+
+        String imageUrl = cloudinaryService.uploadImage(file);
+        pet.setImageUrl(imageUrl);
+
+        return petRepository.save(pet);
+    }
+
     public void deletePet(Long id) {
+        Pet pet = getPetById(id);
+
+        if (pet.getImageUrl() != null && !pet.getImageUrl().isEmpty()) {
+            String publicId = cloudinaryService.extractPublicId(pet.getImageUrl());
+            if (publicId != null) {
+                try {
+                    cloudinaryService.deleteImage(publicId);
+                } catch (IOException e) {
+                    System.err.println("The image couldn't be deleted: " + e.getMessage());
+                }
+            }
+        }
+
         petRepository.deleteById(id);
     }
 }

@@ -31,4 +31,6 @@ public class Pet {
 
     @Enumerated(EnumType.STRING)
     private PetStatus petStatus;
+
+    private String imageUrl;
 }
